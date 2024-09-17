@@ -1,8 +1,16 @@
+import { DUMMY_NEWS } from "@/dummy-news"
+
 export default function News({params}){
+  const newsSlug = params.slug;
+  const newsItem = DUMMY_NEWS.find(newsItem => newsItem.slug === newsSlug);
   return(
-    <>
-      <h1>News Detail Page</h1>
-      <p>This is the {params.slug} page</p>
-    </>
+    <article className="news-article">
+      <header>
+        <img src={`/images/news/${newsItem.image}`} alt={newsItem.title}/>
+        <h1>{newsItem.title}</h1>
+        <time datetime={newsItem.date}>{newsItem.date}</time>
+      </header>
+      <p>{newsItem.content}</p>
+    </article>
   );
 }
